@@ -21,6 +21,7 @@ public class ClientGenerator implements Runnable{
 	private int serviceTime=(int)(Math.random()*20 +1);
 	private int newClientWaitTime=0;
 	private String id;
+	private float avg = 0.0f;
 	private int waitTime = 0;
 	private int currentTime;
 	private int passedTime1=0;
@@ -53,6 +54,7 @@ public class ClientGenerator implements Runnable{
 		}
 		}
 		System.out.println("The Store is closed");
+		System.out.println("The avarage service time was: "+ avg/idnum);
 	
 	}
 	
@@ -65,6 +67,7 @@ public class ClientGenerator implements Runnable{
 	public void addNewClient(){
 		if(currentTime -waitTime == 0){
 			id= "Client "+idnum++;
+			avg+=serviceTime;
 			switch (getMinimumServiceTime()){
 			case 1:
 				coada1.add(new Client(serviceTime, id));
